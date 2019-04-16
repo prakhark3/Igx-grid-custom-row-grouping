@@ -1,0 +1,23 @@
+<div class="grid-controls">
+    <p>Toggle Multiple Selection</p>
+    <igx-switch [(ngModel)]="selection"></igx-switch>
+</div>
+<div class="grid__wrapper">
+    <igx-grid #grid1 [data]="data" [height]="'530px'" width="100%" [autoGenerate]='false' 
+        >
+        <igx-column [field]="''"> 
+          <ng-template igxHeader let-column>
+           <input type="checkbox"/>
+       </ng-template>
+       <ng-template igxCell let-value let-i="cell.rowIndex" let-cell="cell">
+         <div *ngIf="placeCheckBox(i, cell.row.rowID.Priority)">
+           <input type="checkbox"/>
+         </div>
+       </ng-template>
+        </igx-column>
+        <igx-column [field]="'assetId'" [width]="'12%'"></igx-column>
+        <igx-column [field]="'AssetName'" [width]="'10%'" [filterable]='false'></igx-column>
+        <igx-column [field]="'Priority'" [width]="'12%'" [dataType]="'number'" [formatter]="formatCurrency"></igx-column>
+        
+    </igx-grid>
+</div>
